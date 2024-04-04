@@ -1,7 +1,7 @@
 {
   "version": 2,
   "builds": [
-    { "src": "/app.py", "use": "@vercel/python@3.9" }
+    { "src": "/app.py", "use": "@vercel/python" }
   ],
   "routes": [
     { "handle": "filesystem" },
@@ -10,5 +10,5 @@
   "env": {
     "PYTHON_VERSION": "3.9"
   },
-  "functions": { "app": { "runtime": "vercel-python@3.9", "memory": 512 } }
+  "functions": { "app": { "runtime": "vercel-python@3.9" } }
 }
