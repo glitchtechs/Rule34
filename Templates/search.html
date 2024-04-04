@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R34 Search | {{ search_query }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='search_style.css') }}">
+    <script>
+        function loadImage(imageId, imageUrl) {
+            var img = new Image();
+            img.onload = function() {
+                document.getElementById(imageId).src = imageUrl;
+            };
+            img.onerror = function() {
+                var searchItem = document.getElementById(imageId).closest('.search-item');
+                if (searchItem) {
+                    searchItem.remove();
+                }
+            };
+            img.src = imageUrl;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="search-container">
+            <form action="/search" method="post">
+                <input type="text" name="search_query" class="search-box" value="" placeholder="Uzi_(Murder_Drones)">
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div>
+        <h2>Posts</h2>
+        <h3>Tagged with {{ search_query|replace('_', ' ')|replace('(', '')|replace(')', '') }}</h3>
+        <div class="search-results">
+            {% for image_url in image_urls %}
+                {% if image_url %}
+                <div class="search-item">
+                    <img id="image_{{ loop.index }}" src="" alt="Search Result">
+                    <script>
+                        loadImage("image_{{ loop.index }}", "{{ image_url }}");
+                    </script>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="pagination">
+            {% if page > 2 %}
+                <button onclick="location.href='{{ url_for('search', search_query=search_query, page=1) }}';">«</button>
+            {% endif %}
+            {% if prev_page %}
+                <button onclick="location.href='{{ prev_page }}';"><</button>
+            {% endif %}
+            <div class="page-info">
+                {% set start_page = 1 if page - 2 < 1 else page - 2 %}
+                {% set end_page = total_pages if start_page + 4 > total_pages else start_page + 4 %}
+                {% for num in range(start_page, end_page + 1) %}
+                    <button onclick="location.href='{{ url_for('search', search_query=search_query, page=num) }}';" {% if num == page %}class="active"{% endif %}>{{ num }}</button>
+                {% endfor %}
+            </div>
+            {% if next_page %}
+                <button onclick="location.href='{{ next_page }}';">></button>
+            {% endif %}
+            {% if end_page < total_pages %}
+                <button onclick="location.href='{{ url_for('search', search_query=search_query, page=total_pages) }}';">»</button>
+            {% endif %}
+        </div>
+        
+              
+        
+    </div>
+</body>
+</html>
