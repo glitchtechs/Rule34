@@ -10,4 +10,5 @@
   "env": {
     "PYTHON_VERSION": "3.9"
   }
+  "functions": { "app": { "runtime": "vercel-python@3.9" } }
 }
