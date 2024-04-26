@@ -1,0 +1,118 @@
+body {
+    background-color: #1f1f1f;
+    color: #ddd; 
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding-top: 50px; 
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    padding: 20px; 
+}
+
+.search-results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+    .search-item img {
+        width: 450px; 
+        margin: 5px 0;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .search-item {
+        width: 702px; 
+        margin: 15px 0;
+    }
+}
+
+.search-item {
+    height: auto; 
+    overflow: hidden; 
+    position: relative; 
+}
+
+.search-item img {
+    width: auto;
+    height: auto; 
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; 
+}
+
+.search-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-box {
+    flex: 1; 
+    max-width: calc(100% - 110px);
+    padding: 10px;
+    border-radius: 20px 0 0 20px;
+    border: 2px solid #4CAF50;
+    background-color: #333;
+    color: #fff;
+    font-size: 18px;
+    outline: none;
+}
+
+.search-button {
+    padding: 10px 20px;
+    border-radius: 0 20px 20px 0;
+    border: none;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #474d53; 
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#scrollToTopBtn.show {
+    opacity: 1;
+}
+#scrollToTopBtn:hover {
+    background-color: #474d53; 
+}
+
+#scrollToTopBtn i {
+    font-size: 24px;
+    margin-top: 13px;
+    align-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+    #scrollToTopBtn {
+        display: none;
+    }
+}
